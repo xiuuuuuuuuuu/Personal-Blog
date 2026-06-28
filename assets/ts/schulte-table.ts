@@ -11,6 +11,7 @@ class SchulteTable {
     private readonly root: HTMLElement;
     private readonly grid: HTMLElement;
     private readonly timerEl: HTMLElement;
+    private readonly progressEl: HTMLElement;
     private readonly hintEl: HTMLElement;
     private readonly startBtn: HTMLButtonElement;
     private readonly resetBtn: HTMLButtonElement;
@@ -23,6 +24,7 @@ class SchulteTable {
         this.root = root;
         this.grid = root.querySelector(".schulte-table__grid")!;
         this.timerEl = root.querySelector(".schulte-table__timer")!;
+        this.progressEl = root.querySelector(".schulte-table__progress")!;
         this.hintEl = root.querySelector(".schulte-table__hint")!;
         this.startBtn = root.querySelector(".schulte-table__start")!;
         this.resetBtn = root.querySelector(".schulte-table__reset")!;
@@ -33,10 +35,20 @@ class SchulteTable {
         this.reset();
     }
 
+    private updateProgress(): void {
+        const total = this.size * this.size;
+        if (this.current > total) {
+            this.progressEl.textContent = "完成";
+            return;
+        }
+        this.progressEl.textContent = `下一个: ${this.current}`;
+    }
+
     private reset(): void {
         this.current = 1;
         this.stopTimer();
         this.timerEl.textContent = "--";
+        this.progressEl.hidden = true;
         this.grid.innerHTML = "";
         this.grid.hidden = true;
         this.startBtn.hidden = false;
@@ -52,6 +64,8 @@ class SchulteTable {
         this.current = 1;
         this.stopTimer();
         this.timerEl.textContent = "0.00s";
+        this.progressEl.hidden = false;
+        this.updateProgress();
         this.startBtn.hidden = true;
         this.resetBtn.hidden = false;
         this.root.className = "widget schulte-table schulte-table--playing";
@@ -91,6 +105,15 @@ class SchulteTable {
         }
     }
 
+    private flashHit(cell: HTMLButtonElement): void {
+        cell.classList.add("schulte-table__cell--hit");
+        cell.addEventListener(
+            "animationend",
+            () => cell.classList.remove("schulte-table__cell--hit"),
+            { once: true },
+        );
+    }
+
     private onCellClick(value: number, cell: HTMLButtonElement): void {
         if (value !== this.current) {
             cell.classList.add("schulte-table__cell--wrong");
@@ -98,9 +121,10 @@ class SchulteTable {
             return;
         }
 
-        cell.classList.add("schulte-table__cell--done");
+        this.flashHit(cell);
         cell.disabled = true;
         this.current += 1;
+        this.updateProgress();
 
         if (this.current > this.size * this.size) {
             this.stopTimer();

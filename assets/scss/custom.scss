@@ -69,6 +69,14 @@
         justify-content: space-between;
         flex-shrink: 0;
         min-height: 24px;
+        gap: var(--spacing-xs);
+    }
+
+    .schulte-table__status {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
     }
 
     .schulte-table__timer {
@@ -76,6 +84,17 @@
         font-weight: 700;
         color: var(--accent-color);
         font-variant-numeric: tabular-nums;
+        line-height: 1.2;
+    }
+
+    .schulte-table__progress {
+        font-size: 1.1rem;
+        color: var(--card-text-color-secondary);
+        line-height: 1.2;
+
+        &[hidden] {
+            display: none;
+        }
     }
 
     .schulte-table__reset {
@@ -163,14 +182,36 @@
             transform: scale(1.04);
         }
 
-        &--done {
-            opacity: 0.35;
+        &:disabled {
             cursor: default;
-            transform: none;
+            opacity: 1;
+        }
+
+        &--hit {
+            animation: schulte-hit 0.22s ease;
         }
 
         &--wrong {
             background: rgba(248, 81, 73, 0.35);
+        }
+    }
+
+    @keyframes schulte-hit {
+        0% {
+            transform: scale(1);
+            background: var(--card-background-selected);
+        }
+
+        40% {
+            transform: scale(0.92);
+            background: var(--accent-color);
+            color: var(--accent-color-text);
+        }
+
+        100% {
+            transform: scale(1);
+            background: var(--card-background-selected);
+            color: var(--card-text-color-main);
         }
     }
 

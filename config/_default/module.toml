@@ -1,2 +1,1 @@
-[[imports]]
-    path = "github.com/CaiJimmy/hugo-theme-stack/v4"
+ # Using local theme from themes/stack

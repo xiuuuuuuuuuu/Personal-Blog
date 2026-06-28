@@ -3,8 +3,10 @@ baseurl = "https://xiuuuuuuuuuu.github.io/Personal-Blog/"
 locale  = "zh-cn"
 title   = "Xiuuuuuuuuuu"
 hasCJKLanguage = true
- defaultContentLanguage = "zh-cn"
- disqusShortname = "hugo-theme-stack"
+ theme = "stack"
+defaultContentLanguage = "zh-cn"
+disqusShortname = "hugo-theme-stack"
+ resourceDir = "C:/Users/Administrator/AppData/Local/Temp/hugo-resources"
 
 [pagination]
     pagerSize = 5

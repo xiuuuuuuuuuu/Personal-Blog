@@ -5,8 +5,8 @@ title   = "Xiuuuuuuuuuu"
 hasCJKLanguage = true
  theme = "stack"
 defaultContentLanguage = "zh-cn"
-disqusShortname = "hugo-theme-stack"
- resourceDir = "C:/Users/Administrator/AppData/Local/Temp/hugo-resources"
+ # disqusShortname = "hugo-theme-stack"
+resourceDir = "C:/Users/Administrator/AppData/Local/Temp/hugo-resources"
 
 [pagination]
     pagerSize = 5

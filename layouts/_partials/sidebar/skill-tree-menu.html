@@ -2,6 +2,19 @@
     {{- if .items -}}
     <li class="menu-item-collapsible skill-tree-menu">
         <details class="skill-tree-details" {{ if default true .defaultOpen }}open{{ end }}>
+            <script>
+                (function() {
+                    var details = document.currentScript.closest('.skill-tree-details');
+                    if (!details) return;
+                    var key = 'skillTreeOpen';
+                    var saved = localStorage.getItem(key);
+                    if (saved === 'true') { details.setAttribute('open', ''); }
+                    else if (saved === 'false') { details.removeAttribute('open'); }
+                    details.addEventListener('toggle', function() {
+                        localStorage.setItem(key, details.open);
+                    });
+                })();
+            </script>
             <summary class="skill-tree-summary">
                 {{ partial "helper/icon" "hash" }}
                 <span class="skill-tree-label">{{ default "技能树" .title }}</span>
@@ -9,8 +22,10 @@
             </summary>
             <ol class="skill-tree-submenu">
                 {{- range .items -}}
-                <li class="skill-tree-subitem">
-                    <span>{{ . }}</span>
+                <li class="skill-tree-subitem skill-tree-subitem-link">
+                    <a href="{{ "tags/" | relLangURL }}{{ .slug }}/">
+                        {{- .name -}}
+                    </a>
                 </li>
                 {{- end -}}
             </ol>

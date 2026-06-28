@@ -1,4 +1,4 @@
-﻿/*
+/*
     You can add your own custom styles here.
 */
 
@@ -12,12 +12,21 @@
     list-style: none;
 }
 
-// summary 占满整行，flex-wrap:nowrap 防止折叠箭头换行
+// summary 占满整行，箭头始终在同一行右侧
+.skill-tree-menu {
+    width: 100%;
+}
+
+.skill-tree-menu .skill-tree-details {
+    width: 100%;
+}
+
 .skill-tree-menu .skill-tree-summary {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-between;
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
     gap: var(--menu-icon-separation);
     color: var(--body-text-color);
     cursor: pointer;
@@ -39,17 +48,22 @@
     flex-shrink: 0;
 }
 
-// 文字不换行
-.skill-tree-menu .skill-tree-summary .skill-tree-label {
+// 文字占据剩余空间
+#main-menu .skill-tree-menu .skill-tree-summary .skill-tree-label {
+    flex: 1 1 auto;
+    min-width: 0;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-// 折叠箭头 — 置于右侧，禁止换行
-.skill-tree-menu .skill-tree-chevron {
-    flex-shrink: 0;
-    margin-left: 0;
+// 折叠箭头固定在右侧，覆盖 #main-menu li span { flex: 1 }
+#main-menu .skill-tree-menu .skill-tree-chevron {
+    flex: 0 0 auto;
+    margin-left: auto;
     transition: transform 0.2s ease;
     opacity: 0.6;
+    line-height: 0;
 }
 .skill-tree-menu .skill-tree-chevron svg {
     width: 18px;
@@ -61,8 +75,9 @@
     color: var(--accent-color);
     font-weight: 700;
 }
-.skill-tree-menu details[open] .skill-tree-chevron {
+#main-menu .skill-tree-menu details[open] .skill-tree-chevron {
     transform: rotate(90deg);
+    transform-origin: center center;
 }
 
 // 子菜单
@@ -83,6 +98,12 @@
 .skill-tree-menu .skill-tree-subitem:hover {
     background: var(--card-background-selected);
     color: var(--card-text-color-secondary);
+}
+.skill-tree-menu .skill-tree-subitem-link a {
+    display: block;
+    width: 100%;
+    color: inherit;
+    text-decoration: none;
 }
 
 /* === 所有导航菜单项添加悬停背景色 === */

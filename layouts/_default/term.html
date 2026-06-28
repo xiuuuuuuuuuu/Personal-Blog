@@ -1,0 +1,24 @@
+﻿{{ define "main" }}
+    <header class="page-header">
+        <h1 class="section-title">{{ .Title }}</h1>
+        {{ with .Description }}
+            <p class="page-description">{{ . }}</p>
+        {{ end }}
+    </header>
+
+    <section class="article-list">
+        {{ range (.Paginate .Pages).Pages }}
+            {{ partial "article-list/default" . }}
+        {{ end }}
+    </section>
+    
+    <footer class="site-footer">
+        <section class="copyright">
+            &copy; 2026 {{ .Site.Title }}
+        </section>
+        <section class="powerby">
+            使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建<br />
+            主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.3">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        </section>
+    </footer>
+{{ end }}

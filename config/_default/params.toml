@@ -25,7 +25,30 @@ SortBy              = "default"
 [skillTree]
     title       = "技能树"
     defaultOpen = false
-    items       = ["C#", "C++", "Unity", "UE", "OpenGL", "Math", "DSA", "Tools"]
+    [[skillTree.items]]
+        name = "C#"
+        slug = "csharp"
+    [[skillTree.items]]
+        name = "C++"
+        slug = "cpp"
+    [[skillTree.items]]
+        name = "Unity"
+        slug = "unity"
+    [[skillTree.items]]
+        name = "UE"
+        slug = "ue"
+    [[skillTree.items]]
+        name = "OpenGL"
+        slug = "opengl"
+    [[skillTree.items]]
+        name = "Math"
+        slug = "math"
+    [[skillTree.items]]
+        name = "DSA"
+        slug = "dsa"
+    [[skillTree.items]]
+        name = "Tools"
+        slug = "tools"
 
 [article]
     headingAnchor = false

@@ -2,6 +2,192 @@
     You can add your own custom styles here.
 */
 
+/* === 右侧边栏紧凑布局 + 舒尔特方块 === */
+.right-sidebar {
+    @include respond(lg) {
+        gap: var(--spacing-sm);
+        min-height: calc(100vh - 2 * var(--main-top-padding));
+    }
+
+    .widget:not(.schulte-table) {
+        gap: var(--spacing-xs);
+
+        .widget-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .widget-title {
+            display: none;
+        }
+    }
+
+    .search-form.widget {
+        --button-size: 44px;
+
+        label {
+            font-size: 1.2rem;
+            top: 8px;
+        }
+
+        input {
+            font-size: 1.3rem;
+            padding: 24px 44px 10px 14px;
+        }
+    }
+
+    .widget.archives .archives-year a {
+        font-size: 1.3rem;
+        padding: 10px 14px;
+    }
+
+    .tagCloud .tagCloud-tags {
+        gap: 6px;
+
+        a {
+            padding: 4px 10px;
+            font-size: 1.2rem;
+        }
+    }
+}
+
+.widget.schulte-table {
+    @include card-style;
+    margin-top: auto;
+    width: 100%;
+    aspect-ratio: 1;
+    box-sizing: border-box;
+    padding: var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    min-height: 0;
+
+    .schulte-table__toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-shrink: 0;
+        min-height: 24px;
+    }
+
+    .schulte-table__timer {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--accent-color);
+        font-variant-numeric: tabular-nums;
+    }
+
+    .schulte-table__reset {
+        border: 0;
+        background: transparent;
+        color: var(--card-text-color-secondary);
+        cursor: pointer;
+        font-size: 1.6rem;
+        line-height: 1;
+        padding: 0 4px;
+        border-radius: var(--tag-border-radius);
+
+        &:hover {
+            color: var(--accent-color);
+            background: var(--card-background-selected);
+        }
+
+        &[hidden] {
+            display: none;
+        }
+    }
+
+    .schulte-table__stage {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .schulte-table__start {
+        border: 0;
+        border-radius: var(--tag-border-radius);
+        background: var(--accent-color);
+        color: var(--accent-color-text);
+        cursor: pointer;
+        font-size: 1.4rem;
+        font-weight: 700;
+        padding: 10px 20px;
+        transition: opacity 0.15s ease, transform 0.15s ease;
+
+        &:hover {
+            opacity: 0.9;
+            transform: scale(1.03);
+        }
+
+        &[hidden] {
+            display: none;
+        }
+    }
+
+    .schulte-table__grid {
+        flex: 1;
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        display: grid;
+        gap: 3px;
+
+        &[hidden] {
+            display: none;
+        }
+    }
+
+    &.schulte-table--playing,
+    &.schulte-table--finished {
+        .schulte-table__stage {
+            align-items: stretch;
+        }
+    }
+
+    .schulte-table__cell {
+        border: 0;
+        border-radius: 4px;
+        background: var(--card-background-selected);
+        color: var(--card-text-color-main);
+        font-size: clamp(1rem, 2.2vw, 1.4rem);
+        font-weight: 600;
+        cursor: pointer;
+        padding: 0;
+        transition: background-color 0.15s ease, transform 0.15s ease;
+
+        &:hover:not(:disabled) {
+            background: var(--card-separator-color);
+            transform: scale(1.04);
+        }
+
+        &--done {
+            opacity: 0.35;
+            cursor: default;
+            transform: none;
+        }
+
+        &--wrong {
+            background: rgba(248, 81, 73, 0.35);
+        }
+    }
+
+    .schulte-table__hint {
+        margin: 0;
+        flex-shrink: 0;
+        text-align: center;
+        font-size: 1.1rem;
+        color: var(--card-text-color-tertiary);
+    }
+
+    &.schulte-table--finished .schulte-table__hint {
+        color: var(--accent-color);
+        font-weight: 600;
+    }
+}
+
 /* === 左侧技能树菜单 — 与普通导航项完全一致 === */
 
 // 去掉浏览器默认的 <details> 三角箭头

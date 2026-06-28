@@ -26,6 +26,15 @@
         newTab = true
 
 [[social]]
+    identifier = "notion"
+    name       = "我的 Notion 笔记"
+    url        = "https://grateful-mouth-61c.notion.site/1ca44433cc3c81afa582f75d1bc22d5d"
+
+    [social.params]
+        icon   = "brand-notion"
+        newTab = true
+
+[[social]]
     identifier = "email-163"
     name       = "163 邮箱 chenyu20040403513@163.com"
     url        = "mailto:chenyu20040403513@163.com"

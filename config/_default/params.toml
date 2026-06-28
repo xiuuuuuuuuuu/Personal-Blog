@@ -49,6 +49,9 @@ SortBy              = "default"
     [[skillTree.items]]
         name = "Tools"
         slug = "tools"
+    [[skillTree.items]]
+        name = "数据持久化"
+        slug = "data-persistence"
 
 [article]
     headingAnchor = false

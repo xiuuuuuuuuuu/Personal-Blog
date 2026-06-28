@@ -117,3 +117,37 @@
     display: flex;
     width: 100%;
 }
+
+/* === 长文笔记排版优化 === */
+.main-article .article-content {
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: var(--spacing-md) auto;
+        border-radius: var(--tag-border-radius);
+        box-shadow: var(--shadow-l1);
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        margin: var(--spacing-md) 0;
+    }
+
+    blockquote {
+        margin: var(--spacing-md) 0;
+        padding: var(--spacing-sm) var(--spacing-md);
+        border-left: 4px solid var(--accent-color);
+        background: var(--card-background);
+        border-radius: 0 var(--tag-border-radius) var(--tag-border-radius) 0;
+        color: var(--card-text-color-secondary);
+    }
+
+    h4,
+    h5,
+    h6 {
+        margin-top: var(--spacing-lg);
+        margin-bottom: var(--spacing-sm);
+    }
+}

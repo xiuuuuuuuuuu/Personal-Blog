@@ -1,0 +1,3 @@
+[footer]
+    builtWith  = "使用 {{ .Generator }} 构建"
+    designedBy = "主题 {{ .Theme }} 由 {{ .DesignedBy }} 设计"

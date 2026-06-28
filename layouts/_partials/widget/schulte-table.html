@@ -7,8 +7,16 @@
         <button type="button" class="schulte-table__reset" title="重新开始" hidden>↻</button>
     </div>
     <div class="schulte-table__stage">
-        <button type="button" class="schulte-table__start">开始游戏</button>
+        <div class="schulte-table__idle">
+            <p class="schulte-table__intro">刷文章前热个身，练练专注和眼力。</p>
+            <button type="button" class="schulte-table__start">开始游戏</button>
+        </div>
         <div class="schulte-table__grid" role="grid" aria-label="舒尔特方块" hidden></div>
+        <div class="schulte-table__result" hidden>
+            <p class="schulte-table__result-rating"></p>
+            <p class="schulte-table__result-desc"></p>
+            <button type="button" class="schulte-table__restart">重新开始</button>
+        </div>
     </div>
     <p class="schulte-table__hint">按 1 → 25 顺序点击</p>
 </section>

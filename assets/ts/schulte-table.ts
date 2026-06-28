@@ -7,14 +7,60 @@ function shuffle<T>(items: T[]): T[] {
     return arr;
 }
 
+interface SchulteRating {
+    label: string;
+    description: string;
+}
+
+function getRating(seconds: number): SchulteRating {
+    if (seconds < 10) {
+        return {
+            label: "超凡反应",
+            description: "顶尖水平，接近飞行员/电竞选手",
+        };
+    }
+    if (seconds < 15) {
+        return {
+            label: "非常优秀",
+            description: "注意力和搜索效率极好",
+        };
+    }
+    if (seconds < 20) {
+        return {
+            label: "良好",
+            description: "高于普通水平",
+        };
+    }
+    if (seconds < 30) {
+        return {
+            label: "正常水平",
+            description: "大部分成年人的范围",
+        };
+    }
+    if (seconds < 40) {
+        return {
+            label: "需要放松",
+            description: "略慢，可能注意力没集中",
+        };
+    }
+    return {
+        label: "试试再挑战一次",
+        description: "不熟练或分心了，可以多练",
+    };
+}
+
 class SchulteTable {
     private readonly root: HTMLElement;
     private readonly grid: HTMLElement;
+    private readonly resultEl: HTMLElement;
+    private readonly ratingEl: HTMLElement;
+    private readonly descEl: HTMLElement;
     private readonly timerEl: HTMLElement;
     private readonly progressEl: HTMLElement;
     private readonly hintEl: HTMLElement;
     private readonly startBtn: HTMLButtonElement;
     private readonly resetBtn: HTMLButtonElement;
+    private readonly restartBtn: HTMLButtonElement;
     private readonly size = 5;
     private current = 1;
     private startTime = 0;
@@ -23,25 +69,29 @@ class SchulteTable {
     constructor(root: HTMLElement) {
         this.root = root;
         this.grid = root.querySelector(".schulte-table__grid")!;
+        this.resultEl = root.querySelector(".schulte-table__result")!;
+        this.ratingEl = root.querySelector(".schulte-table__result-rating")!;
+        this.descEl = root.querySelector(".schulte-table__result-desc")!;
         this.timerEl = root.querySelector(".schulte-table__timer")!;
         this.progressEl = root.querySelector(".schulte-table__progress")!;
         this.hintEl = root.querySelector(".schulte-table__hint")!;
         this.startBtn = root.querySelector(".schulte-table__start")!;
         this.resetBtn = root.querySelector(".schulte-table__reset")!;
+        this.restartBtn = root.querySelector(".schulte-table__restart")!;
 
         this.startBtn.addEventListener("click", () => this.startGame());
         this.resetBtn.addEventListener("click", () => this.reset());
+        this.restartBtn.addEventListener("click", () => this.startGame());
 
         this.reset();
     }
 
     private updateProgress(): void {
-        const total = this.size * this.size;
-        if (this.current > total) {
-            this.progressEl.textContent = "完成";
-            return;
-        }
         this.progressEl.textContent = `下一个: ${this.current}`;
+    }
+
+    private hideResult(): void {
+        this.resultEl.hidden = true;
     }
 
     private reset(): void {
@@ -51,7 +101,7 @@ class SchulteTable {
         this.progressEl.hidden = true;
         this.grid.innerHTML = "";
         this.grid.hidden = true;
-        this.startBtn.hidden = false;
+        this.hideResult();
         this.resetBtn.hidden = true;
         this.root.className = "widget schulte-table schulte-table--idle";
 
@@ -66,7 +116,7 @@ class SchulteTable {
         this.timerEl.textContent = "0.00s";
         this.progressEl.hidden = false;
         this.updateProgress();
-        this.startBtn.hidden = true;
+        this.hideResult();
         this.resetBtn.hidden = false;
         this.root.className = "widget schulte-table schulte-table--playing";
 
@@ -105,6 +155,26 @@ class SchulteTable {
         }
     }
 
+    private finishGame(): void {
+        this.stopTimer();
+        const elapsed = (Date.now() - this.startTime) / 1000;
+        this.timerEl.textContent = `${elapsed.toFixed(2)}s`;
+
+        const rating = getRating(elapsed);
+        this.ratingEl.textContent = rating.label;
+        this.descEl.textContent = rating.description;
+
+        this.grid.hidden = true;
+        this.progressEl.hidden = true;
+        this.resetBtn.hidden = true;
+        this.resultEl.hidden = false;
+        this.root.className = "widget schulte-table schulte-table--finished";
+
+        if (this.hintEl) {
+            this.hintEl.textContent = `${elapsed.toFixed(2)} 秒 · ${rating.label}`;
+        }
+    }
+
     private flashHit(cell: HTMLButtonElement): void {
         cell.classList.add("schulte-table__cell--hit");
         cell.addEventListener(
@@ -124,14 +194,13 @@ class SchulteTable {
         this.flashHit(cell);
         cell.disabled = true;
         this.current += 1;
-        this.updateProgress();
+
+        if (this.current <= this.size * this.size) {
+            this.updateProgress();
+        }
 
         if (this.current > this.size * this.size) {
-            this.stopTimer();
-            this.root.className = "widget schulte-table schulte-table--finished";
-            if (this.hintEl) {
-                this.hintEl.textContent = "完成！点击 ↻ 再来一局";
-            }
+            this.finishGame();
         }
     }
 }

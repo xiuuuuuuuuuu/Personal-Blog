@@ -25,33 +25,58 @@ SortBy              = "default"
 [skillTree]
     title       = "技能树"
     defaultOpen = false
-    [[skillTree.items]]
-        name = "C#"
-        slug = "csharp"
-    [[skillTree.items]]
-        name = "C++"
-        slug = "cpp"
-    [[skillTree.items]]
-        name = "Unity"
-        slug = "unity"
-    [[skillTree.items]]
-        name = "UE"
-        slug = "ue"
-    [[skillTree.items]]
-        name = "OpenGL"
-        slug = "opengl"
-    [[skillTree.items]]
-        name = "Math"
-        slug = "math"
-    [[skillTree.items]]
-        name = "DSA"
-        slug = "dsa"
-    [[skillTree.items]]
-        name = "Tools"
-        slug = "tools"
-    [[skillTree.items]]
-        name = "数据持久化"
-        slug = "data-persistence"
+
+    [[skillTree.categories]]
+        name = "编程语言"
+        items = [
+            { name = "C#",  slug = "csharp" },
+            { name = "Lua", slug = "lua" },
+        ]
+
+    [[skillTree.categories]]
+        name = "数据处理"
+        items = [
+            { name = "PlayerPrefs",      slug = "playerprefs" },
+            { name = "Json",             slug = "json" },
+            { name = "二进制",           slug = "binary" },
+            { name = "ScriptableObject", slug = "scriptableobject" },
+        ]
+
+    [[skillTree.categories]]
+        name = "游戏引擎"
+        items = [
+            { name = "Unity",       slug = "unity" },
+            { name = "Cinemachine", slug = "cinemachine" },
+            { name = "DoTween",     slug = "dotween" },
+        ]
+
+    [[skillTree.categories]]
+        name = "游戏框架"
+        items = [
+            { name = "UI 管理", slug = "ui-manager" },
+            { name = "资源加载", slug = "resource-loading" },
+            { name = "对象池",   slug = "object-pool" },
+            { name = "事件中心", slug = "event-center" },
+            { name = "音频管理", slug = "audio-manager" },
+        ]
+
+    [[skillTree.categories]]
+        name = "界面设计"
+        items = [
+            { name = "GUI",  slug = "gui" },
+            { name = "UGUI", slug = "ugui" },
+        ]
+
+    [[skillTree.categories]]
+        name = "热更新"
+        items = [
+            { name = "AssetBundle",  slug = "assetbundle" },
+            { name = "Addressables", slug = "addressables" },
+            { name = "xLua",         slug = "xlua" },
+        ]
+
+    [[skillTree.categories]]
+        name = "网络开发"
 
 [article]
     headingAnchor = false

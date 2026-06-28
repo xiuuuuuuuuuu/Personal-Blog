@@ -1,17 +1,61 @@
-{{- with .Site.Params.skillTree -}}
-    {{- if .items -}}
-    <li class="menu-item-collapsible skill-tree-menu">
-        <details class="skill-tree-details" {{ if default true .defaultOpen }}open{{ end }}>
+{{- $ctx := . -}}
+{{- $currentTag := "" -}}
+{{- if and (eq $ctx.Kind "term") (eq $ctx.Type "tags") -}}
+    {{- $currentTag = $ctx.Data.Term -}}
+{{- end -}}
+{{- with $ctx.Site.Params.skillTree -}}
+    {{- if .categories -}}
+    <li class="menu-item-collapsible skill-tree-menu"{{ with $currentTag }} data-active-tag="{{ . }}"{{ end }}>
+        <details class="skill-tree-details" {{ if or .defaultOpen $currentTag }}open{{ end }}>
             <script>
                 (function() {
-                    var details = document.currentScript.closest('.skill-tree-details');
-                    if (!details) return;
-                    var key = 'skillTreeOpen';
-                    var saved = localStorage.getItem(key);
-                    if (saved === 'true') { details.setAttribute('open', ''); }
-                    else if (saved === 'false') { details.removeAttribute('open'); }
-                    details.addEventListener('toggle', function() {
-                        localStorage.setItem(key, details.open);
+                    var menu = document.currentScript.closest('.skill-tree-menu');
+                    var root = menu.querySelector('.skill-tree-details');
+                    if (!root) return;
+
+                    var rootKey = 'skillTreeOpen';
+                    var catKey = 'skillTreeCategoriesOpen';
+                    var activeTag = menu.dataset.activeTag || '';
+
+                    if (activeTag) {
+                        root.setAttribute('open', '');
+                        localStorage.setItem(rootKey, 'true');
+                    } else {
+                        var savedRoot = localStorage.getItem(rootKey);
+                        if (savedRoot === 'true') root.setAttribute('open', '');
+                        else if (savedRoot === 'false') root.removeAttribute('open');
+                    }
+
+                    root.addEventListener('toggle', function() {
+                        localStorage.setItem(rootKey, root.open);
+                    });
+
+                    var openSet = new Set(JSON.parse(localStorage.getItem(catKey) || '[]'));
+
+                    menu.querySelectorAll('.skill-tree-category-details').forEach(function(details) {
+                        var id = details.dataset.categoryId;
+                        if (details.dataset.hasActive === 'true' || openSet.has(id)) {
+                            details.setAttribute('open', '');
+                            openSet.add(id);
+                        }
+
+                        details.addEventListener('toggle', function() {
+                            if (details.open) openSet.add(id);
+                            else openSet.delete(id);
+                            localStorage.setItem(catKey, JSON.stringify(Array.from(openSet)));
+                        });
+                    });
+
+                    localStorage.setItem(catKey, JSON.stringify(Array.from(openSet)));
+
+                    menu.querySelectorAll('.skill-tree-subitem-link a').forEach(function(link) {
+                        link.addEventListener('click', function() {
+                            var details = link.closest('.skill-tree-category-details');
+                            if (!details) return;
+                            openSet.add(details.dataset.categoryId);
+                            localStorage.setItem(catKey, JSON.stringify(Array.from(openSet)));
+                            localStorage.setItem(rootKey, 'true');
+                        });
                     });
                 })();
             </script>
@@ -21,11 +65,33 @@
                 <span class="skill-tree-chevron">{{ partial "helper/icon" "chevron-right" }}</span>
             </summary>
             <ol class="skill-tree-submenu">
-                {{- range .items -}}
-                <li class="skill-tree-subitem skill-tree-subitem-link">
-                    <a href="{{ "tags/" | relLangURL }}{{ .slug }}/">
-                        {{- .name -}}
-                    </a>
+                {{- range $index, $category := .categories -}}
+                <li class="skill-tree-category">
+                    {{- with $category.items -}}
+                    {{- $hasActive := false -}}
+                    {{- range . -}}
+                        {{- if eq .slug $currentTag -}}
+                            {{- $hasActive = true -}}
+                        {{- end -}}
+                    {{- end -}}
+                    <details class="skill-tree-category-details" data-category-id="cat-{{ $index }}"{{ if $hasActive }} data-has-active="true" open{{ end }}>
+                        <summary class="skill-tree-category-summary">
+                            <span class="skill-tree-category-label">{{ $category.name }}</span>
+                            <span class="skill-tree-chevron">{{ partial "helper/icon" "chevron-right" }}</span>
+                        </summary>
+                        <ol class="skill-tree-leaves">
+                            {{- range . -}}
+                            <li class="skill-tree-subitem skill-tree-subitem-link{{ if eq .slug $currentTag }} current{{ end }}">
+                                <a href="{{ "tags/" | relLangURL }}{{ .slug }}/">
+                                    {{- .name -}}
+                                </a>
+                            </li>
+                            {{- end -}}
+                        </ol>
+                    </details>
+                    {{- else -}}
+                    <span class="skill-tree-category-label skill-tree-category-label--static">{{ $category.name }}</span>
+                    {{- end -}}
                 </li>
                 {{- end -}}
             </ol>

@@ -13,12 +13,30 @@
     url        = "https://github.com/xiuuuuuuuuuu"
 
     [social.params]
-        icon = "brand-github"
+        icon   = "brand-github"
+        newTab = true
 
 [[social]]
-    identifier = "twitter"
-    name       = "Twitter"
-    url        = "https://twitter.com"
+    identifier = "bilibili"
+    name       = "Bilibili"
+    url        = "https://space.bilibili.com/455321747"
 
     [social.params]
-        icon = "brand-twitter"
+        icon   = "brand-bilibili"
+        newTab = true
+
+[[social]]
+    identifier = "email-163"
+    name       = "163 邮箱 chenyu20040403513@163.com"
+    url        = "mailto:chenyu20040403513@163.com"
+
+    [social.params]
+        icon = "mail"
+
+[[social]]
+    identifier = "email-gmail"
+    name       = "Gmail 1145141919810xiu@gmail.com"
+    url        = "mailto:1145141919810xiu@gmail.com"
+
+    [social.params]
+        icon = "brand-gmail"

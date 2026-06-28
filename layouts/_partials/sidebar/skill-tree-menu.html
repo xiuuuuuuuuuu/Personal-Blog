@@ -1,0 +1,20 @@
+{{- with .Site.Params.skillTree -}}
+    {{- if .items -}}
+    <li class="menu-item-collapsible skill-tree-menu">
+        <details class="skill-tree-details" {{ if default true .defaultOpen }}open{{ end }}>
+            <summary class="skill-tree-summary">
+                {{ partial "helper/icon" "hash" }}
+                <span class="skill-tree-label">{{ default "技能树" .title }}</span>
+                <span class="skill-tree-chevron">{{ partial "helper/icon" "chevron-right" }}</span>
+            </summary>
+            <ol class="skill-tree-submenu">
+                {{- range .items -}}
+                <li class="skill-tree-subitem">
+                    <span>{{ . }}</span>
+                </li>
+                {{- end -}}
+            </ol>
+        </details>
+    </li>
+    {{- end -}}
+{{- end -}}

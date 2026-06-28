@@ -1,3 +1,98 @@
-/*
+﻿/*
     You can add your own custom styles here.
 */
+
+/* === 左侧技能树菜单 — 与普通导航项完全一致 === */
+
+// 去掉浏览器默认的 <details> 三角箭头
+.skill-tree-menu details summary::-webkit-details-marker {
+    display: none;
+}
+.skill-tree-menu details summary {
+    list-style: none;
+}
+
+// summary 占满整行，flex-wrap:nowrap 防止折叠箭头换行
+.skill-tree-menu .skill-tree-summary {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--menu-icon-separation);
+    color: var(--body-text-color);
+    cursor: pointer;
+    user-select: none;
+    padding: 0;
+}
+
+.skill-tree-menu .skill-tree-summary:hover {
+    background: var(--card-background-selected);
+    border-radius: var(--tag-border-radius);
+    color: var(--card-text-color-main);
+}
+
+// SVG 图标 20x20，和其他菜单项一致
+.skill-tree-menu .skill-tree-summary svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 1.33;
+    flex-shrink: 0;
+}
+
+// 文字不换行
+.skill-tree-menu .skill-tree-summary .skill-tree-label {
+    white-space: nowrap;
+}
+
+// 折叠箭头 — 置于右侧，禁止换行
+.skill-tree-menu .skill-tree-chevron {
+    flex-shrink: 0;
+    margin-left: 0;
+    transition: transform 0.2s ease;
+    opacity: 0.6;
+}
+.skill-tree-menu .skill-tree-chevron svg {
+    width: 18px;
+    height: 18px;
+}
+
+// 展开时高亮
+.skill-tree-menu details[open] .skill-tree-summary {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+.skill-tree-menu details[open] .skill-tree-chevron {
+    transform: rotate(90deg);
+}
+
+// 子菜单
+.skill-tree-menu .skill-tree-submenu {
+    list-style: none;
+    margin: 0;
+    padding: 4px 0 4px calc(20px + var(--menu-icon-separation));
+}
+.skill-tree-menu .skill-tree-subitem {
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    font-size: 1.4rem;
+    color: var(--card-text-color-tertiary);
+    border-radius: var(--tag-border-radius);
+    cursor: default;
+}
+.skill-tree-menu .skill-tree-subitem:hover {
+    background: var(--card-background-selected);
+    color: var(--card-text-color-secondary);
+}
+
+/* === 所有导航菜单项添加悬停背景色 === */
+#main-menu > li > a:hover {
+    background: var(--card-background-selected);
+    border-radius: var(--tag-border-radius);
+}
+
+/* === 导航链接占满整行 === */
+#main-menu li a {
+    display: flex;
+    width: 100%;
+}

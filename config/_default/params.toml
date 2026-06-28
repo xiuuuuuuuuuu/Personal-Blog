@@ -22,6 +22,11 @@ SortBy              = "default"
     subtitle = "写点有意思的东西"
     avatar   = "img/avatar.png"
 
+[skillTree]
+    title       = "技能树"
+    defaultOpen = false
+    items       = ["C#", "C++", "Unity", "UE", "OpenGL", "Math", "DSA", "Tools"]
+
 [article]
     headingAnchor = false
     math          = false

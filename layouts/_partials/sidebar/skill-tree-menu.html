@@ -5,6 +5,7 @@
 {{- end -}}
 {{- with $ctx.Site.Params.skillTree -}}
     {{- if .categories -}}
+    {{- $tags := $ctx.Site.Taxonomies.tags -}}
     <li class="menu-item-collapsible skill-tree-menu"{{ with $currentTag }} data-active-tag="{{ . }}"{{ end }}>
         <details class="skill-tree-details" {{ if or .defaultOpen $currentTag }}open{{ end }}>
             <script>
@@ -70,7 +71,7 @@
                     {{- with $category.items -}}
                     {{- $hasActive := false -}}
                     {{- range . -}}
-                        {{- if eq .slug $currentTag -}}
+                        {{- if and (index $tags .slug) (eq .slug $currentTag) -}}
                             {{- $hasActive = true -}}
                         {{- end -}}
                     {{- end -}}
@@ -81,11 +82,17 @@
                         </summary>
                         <ol class="skill-tree-leaves">
                             {{- range . -}}
+                            {{- if index $tags .slug -}}
                             <li class="skill-tree-subitem skill-tree-subitem-link{{ if eq .slug $currentTag }} current{{ end }}">
                                 <a href="{{ "tags/" | relLangURL }}{{ .slug }}/">
                                     {{- .name -}}
                                 </a>
                             </li>
+                            {{- else -}}
+                            <li class="skill-tree-subitem skill-tree-subitem--empty" title="暂无文章">
+                                <span>{{ .name }}</span>
+                            </li>
+                            {{- end -}}
                             {{- end -}}
                         </ol>
                     </details>

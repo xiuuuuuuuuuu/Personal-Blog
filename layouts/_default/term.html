@@ -7,8 +7,12 @@
     </header>
 
     <section class="article-list">
-        {{ range (.Paginate .Pages).Pages }}
-            {{ partial "article-list/default" . }}
+        {{ if .Pages }}
+            {{ range (.Paginate .Pages).Pages }}
+                {{ partial "article-list/default" . }}
+            {{ end }}
+        {{ else }}
+            <p class="article-list-empty">该标签下暂无文章。</p>
         {{ end }}
     </section>
     

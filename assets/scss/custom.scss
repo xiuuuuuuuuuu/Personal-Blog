@@ -472,6 +472,22 @@
     font-weight: 700;
 }
 
+.skill-tree-menu .skill-tree-subitem--empty {
+    opacity: 0.45;
+    cursor: default;
+}
+
+.skill-tree-menu .skill-tree-subitem--empty:hover {
+    background: transparent;
+    color: var(--card-text-color-tertiary);
+}
+
+.article-list-empty {
+    margin: var(--spacing-lg) 0;
+    color: var(--card-text-color-secondary);
+    font-size: 1.4rem;
+}
+
 /* === 所有导航菜单项添加悬停背景色 === */
 #main-menu > li > a:hover {
     background: var(--card-background-selected);

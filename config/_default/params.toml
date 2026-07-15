@@ -75,8 +75,16 @@ SortBy              = "default"
             { name = "xLua",         slug = "xlua" },
         ]
 
+  [[skillTree.categories]]
     [[skillTree.categories]]
         name = "网络开发"
+     [[skillTree.categories]]
+         name = "图形学"
+         items = [
+             { name = "CG",     slug = "cg" },
+             { name = "Shader", slug = "shader" },
+             { name = "OpenGL", slug = "opengl" },
+         ]
 
 [article]
     headingAnchor = false

@@ -51,6 +51,90 @@
     }
 }
 
+/* === 站点公告横幅 === */
+.notice-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card-background);
+    border-bottom: 1px solid var(--card-separator-color);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-l1);
+
+    .notice-banner__inner {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        width: 100%;
+        max-width: var(--main-width);
+        padding: var(--spacing-xs) var(--spacing-md);
+        box-sizing: border-box;
+    }
+
+    .notice-banner__icon {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        color: var(--accent-color);
+    }
+
+    .notice-banner__text {
+        flex: 1;
+        font-size: 1.3rem;
+        color: var(--card-text-color-secondary);
+        line-height: 1.5;
+
+        a {
+            color: var(--accent-color);
+            font-weight: 600;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .notice-banner__close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+        border: none;
+        background: transparent;
+        color: var(--card-text-color-tertiary);
+        cursor: pointer;
+        border-radius: var(--tag-border-radius);
+        transition: background-color 0.15s ease, color 0.15s ease;
+        padding: 0;
+
+        &:hover {
+            background: var(--card-background-selected);
+            color: var(--card-text-color-main);
+        }
+    }
+}
+
+@media (max-width: 680px) {
+    .notice-banner .notice-banner__inner {
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .notice-banner .notice-banner__icon {
+        display: none;
+    }
+
+    .notice-banner .notice-banner__text {
+        font-size: 1.2rem;
+    }
+}
+/* === 站点公告横幅 END === */
+
 .widget.schulte-table {
     @include card-style;
     margin-top: auto;

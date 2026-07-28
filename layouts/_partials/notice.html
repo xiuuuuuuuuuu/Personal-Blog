@@ -1,0 +1,38 @@
+<div class="notice-banner" id="site-notice">
+    <div class="notice-banner__inner">
+        <span class="notice-banner__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+                <line x1="4" y1="22" x2="4" y2="15"/>
+            </svg>
+        </span>
+        <span class="notice-banner__text">
+            本博客正在新建中，旧笔记请移步
+            <a href="https://www.notion.so/1ca44433cc3c802d9c3acd9052afb960?source=copy_link" target="_blank" rel="noopener noreferrer">Notion 旧站</a>
+        </span>
+        <button class="notice-banner__close" id="notice-dismiss" aria-label="关闭提示">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<script>
+(function(){
+    var key = 'blog-notice-dismissed';
+    var banner = document.getElementById('site-notice');
+    if (banner && localStorage.getItem(key)) {
+        banner.style.display = 'none';
+    }
+    var btn = document.getElementById('notice-dismiss');
+    if (btn && banner) {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            banner.style.display = 'none';
+            try { localStorage.setItem(key, '1'); } catch(e) {}
+        });
+    }
+})();
+</script>

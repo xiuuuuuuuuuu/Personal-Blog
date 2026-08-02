@@ -1,5 +1,5 @@
 # Pages placed under these sections will be shown on homepage and archive page.
-mainSections = ["post"]
+mainSections = ["post", "tools"]
 # Output page's full content in RSS.
 rssFullContent = true
 favicon        = "img/favicon.png"
@@ -104,6 +104,10 @@ SortBy              = "default"
         { type = "schulte-table" },
     ]
     page = [{ type = "toc" }]
+
+[imageProcessing]
+    [imageProcessing.content]
+        enabled = false
 
 [opengraph.twitter]
     site = ""

@@ -8,7 +8,7 @@ categories:
 tags:
     - unity
     - 音频
-    - 音频管理
+    - audio-manager
     - ScriptableObject
 weight: 20
 ---

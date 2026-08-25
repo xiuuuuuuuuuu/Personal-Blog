@@ -2,6 +2,13 @@
     You can add your own custom styles here.
 */
 
+/* === Maple Mono NF CN 全站字体 === */
+:root {
+    --sys-font-family: "Maple Mono NF CN", "Microsoft YaHei", "PingFang SC", "Segoe UI", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+    --base-font-family: var(--sys-font-family);
+    --code-font-family: "Maple Mono NF CN", Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
 /* === 右侧边栏紧凑布局 + 舒尔特方块 === */
 .right-sidebar {
     @include respond(lg) {

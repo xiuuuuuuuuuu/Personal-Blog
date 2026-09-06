@@ -10,7 +10,7 @@
             // Update VERSION to pick a specific hugo version.
             // Example versions: latest, 0.73.0, 0,71.1
             // Rebuild the container if it already exists to update.
-            "VERSION": "latest",
+            "VERSION": "0.163.3",
             // Update NODE_VERSION to pick the Node.js version: 12, 14
             "NODE_VERSION": "22"
         }
@@ -37,9 +37,5 @@
     // Use 'postCreateCommand' to run commands after the container is created.
     // "postCreateCommand": "uname -a",
     // Set `remoteUser` to `root` to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-    "remoteUser": "node",
-    "features": {
-        "ghcr.io/devcontainers/features/go:1": {},
-        "ghcr.io/prplecake/devcontainer-features/dart-sass:1": {}
-    }
+    "remoteUser": "node"
 }

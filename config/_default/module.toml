@@ -1,1 +1,1 @@
- # Using local theme from themes/stack
+# The Stack theme is vendored in themes/stack; no Hugo Module dependency is used.

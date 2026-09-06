@@ -68,6 +68,8 @@ Window > Animation > Animator
 
 ## Animator 窗口结构
 
+![Animator 窗口整体结构](./animator-window-overview.png)
+
 ### 左侧面板
 
 左侧面板主要有两个页签。
@@ -82,6 +84,8 @@ Window > Animation > Animator
 - `+`：添加 Layer 或 Parameter。
 - 齿轮按钮：设置当前 Layer。
 - 眼睛图标：显示或隐藏左侧面板。
+
+![Parameters 面板中的四种参数类型](./animator-parameters-panel.png)
 
 ### 右侧状态机编辑区
 
@@ -121,6 +125,8 @@ Window > Animation > Animator
 
 也可以在 Animator 窗口中右键创建状态，再在 Inspector 中给状态关联 Motion。
 
+![右键创建动画状态菜单](./create-state-menu.png)
+
 常见方式：
 
 | 操作 | 作用 |
@@ -147,6 +153,8 @@ Window > Animation > Animator
 ## 添加状态过渡
 
 状态之间必须有过渡连线，Unity 才知道它们可以切换。
+
+![两个状态之间的过渡连线](./transition-overview.png)
 
 创建过渡：
 
@@ -175,6 +183,8 @@ Window > Animation > Animator
 ## Transition 过渡参数
 
 选中两个状态之间的过渡线后，可以在 Inspector 中设置过渡参数。它们决定什么时候切换、切换多久、是否允许被其他过渡打断。
+
+![Transition 参数和 Conditions 设置](./transition-conditions-inspector.png)
 
 | 参数 | 作用 |
 | --- | --- |
@@ -219,6 +229,8 @@ Window > Animation > Animator
 ## Animator 组件参数
 
 `Animator` 组件挂在 GameObject 上，负责运行 Animator Controller。
+
+![Animator 组件 Inspector 参数](./animator-component-inspector.png)
 
 | 参数 | 作用 |
 | --- | --- |

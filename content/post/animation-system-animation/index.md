@@ -71,6 +71,8 @@ Window > Animation > Animation
 
 ## Animation 窗口结构
 
+![Animation 窗口整体结构](./animation-window-overview.png)
+
 ### 顶部播放控制区
 
 | 控件 | 作用 |
@@ -165,6 +167,8 @@ Unity 会为 `Position.x`、`Position.y`、`Position.z` 建立对应的动画曲
 
 `Dopesheet` 是关键帧模式，它关注的是“哪些时间点有关键帧”。如果只是调整关键帧位置、增删关键帧，Dopesheet 会比 Curves 更直观。
 
+![Dopesheet 模式下的属性轨道和时间轴](./dopesheet-overview.png)
+
 ### 手动添加属性和关键帧
 
 流程：
@@ -226,6 +230,8 @@ Unity 会为 `Position.x`、`Position.y`、`Position.z` 建立对应的动画曲
 
 `Curves` 是曲线模式，它关注的是“关键帧之间怎么变化”。如果动画运动节奏不自然，例如太匀速、太突然、缺少缓入缓出，就应该切到 Curves 调整曲线。
 
+![Curves 模式下的动画曲线](./curves-overview.png)
+
 ### Curves 模式适合做什么
 
 Curves 适合处理：
@@ -254,6 +260,8 @@ Dopesheet 主要看“什么时候有关键帧”；Curves 主要看“关键帧
 ## 关键帧右键菜单和切线模式
 
 在 Dopesheet 或 Curves 中选中关键帧后，可以右键打开菜单。
+
+![关键帧右键菜单和切线选项](./keyframe-tangent-menu.png)
 
 ### 关键帧操作
 
@@ -293,6 +301,8 @@ Dopesheet 主要看“什么时候有关键帧”；Curves 主要看“关键帧
 
 选中 `.anim` 文件后，可以在 Inspector 中查看和修改动画片段参数。普通模式和 Debug 模式下能看到的字段不同。
 
+![AnimationClip 常用参数](./animationclip-inspector.png)
+
 ### 常用循环参数
 
 | 参数 | 作用 |
@@ -304,6 +314,8 @@ Dopesheet 主要看“什么时候有关键帧”；Curves 主要看“关键帧
 ### Debug 模式常见参数
 
 在 Inspector 右上角菜单切换到 `Debug` 模式后，可以看到更多底层字段。对普通 `.anim` 资源，常用关注点是：
+
+![Debug 模式下的 Sample Rate 和 Wrap Mode](./animationclip-debug-settings.png)
 
 | 参数 | 作用 |
 | --- | --- |

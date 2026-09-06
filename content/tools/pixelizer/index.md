@@ -16,7 +16,7 @@ weight: 1
 
 这个工具参考了 [StoryCrafter Pixelizer](https://www.storycrafter.ai/pixelizer) 的像素化玩法，并做成了可以离线使用的网页版本。
 
-![Pixelizer 使用演示](./pixelizer-demo.gif)
+<img src="./pixelizer-demo.webp" alt="Pixelizer 使用演示" loading="lazy" decoding="async">
 
 ## 图片转像素画
 

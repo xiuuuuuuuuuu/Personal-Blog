@@ -1,6 +1,6 @@
 ---
 title: "Unity TMP 转 Text 迁移工具"
-description: "一个把 TextMeshProUGUI 批量迁移为 UnityEngine.UI.Text 的编辑器工具，支持字体映射、参数迁移、右键转换和 Undo"
+description: "一个把 TextMeshProUGUI 批量迁移为 UnityEngine.UI.Text 的编辑器工具，支持字体映射、参数迁移、右键转换、当前场景批量转换和 Undo"
 slug: tmp-to-text-migration-tool
 date: 2026-09-16 00:35:00+0800
 categories:
@@ -16,6 +16,23 @@ weight: 19
 最近写了一个小工具，用来把 Unity UI 里的 `TextMeshProUGUI` 批量转换成旧版 `UnityEngine.UI.Text`。
 
 正常情况下我更推荐新项目继续使用 TMP，因为 TMP 的字体渲染、fallback、材质效果和富文本能力都更完整。但有些项目会遇到比较现实的迁移需求：旧 UI 代码只认 `Text`，目标平台或历史插件对 TMP 支持不好，或者某些资源包需要回退到旧版 UI 文本组件。手动一个个替换很容易漏参数，也很容易把字号、颜色、对齐和射线检测状态弄乱，于是就有了这个编辑器工具。
+
+## 版本更新
+
+### v1.1
+
+1.1 版本在设置窗口里新增了批量转换区域：
+
+```text
+转换选中对象及子物体
+转换当前场景所有 TMP
+```
+
+其中 `转换当前场景所有 TMP` 会扫描当前打开并已加载场景中的所有 `TextMeshProUGUI`，跳过 Project 里的持久化资源，并在正式转换前弹出确认框。它适合在字体映射和转换参数已经确认无误后，对整个场景做一次统一迁移。
+
+### v1.0
+
+1.0 版本提供基础迁移能力：支持选中对象及子物体转换、组件右键转换、菜单栏转换、字体映射、参数迁移和 Undo。这个版本更适合先在小范围 UI 节点上验证转换效果。
 
 ## 工具做了什么
 
@@ -79,11 +96,13 @@ Assets/Editor/TMPToTextMigrationSettings.asset
 
 在设置窗口里可以配置默认字体、字体映射、Overflow 行为、是否关闭 Raycast Target、是否保留 Auto Size 等选项。
 
-实际转换有三种入口：
+1.1 版本实际转换有四种入口：
 
 | 入口 | 作用 |
 | --- | --- |
 | Hierarchy 右击对象，选择 `将 TMP 转换为 Text` | 转换选中对象及所有子物体中的 TMP |
+| 设置窗口点击 `转换选中对象及子物体` | 转换当前选中对象范围 |
+| 设置窗口点击 `转换当前场景所有 TMP` | 转换当前已加载场景中的所有 TMP，执行前会弹确认框 |
 | Inspector 右击 `TextMeshProUGUI` 组件，选择 `转换为旧版 Text` | 只转换当前组件 |
 | 菜单栏 `Tools > UI > 将选中 TMP 转换为 Text` | 转换当前选中对象范围 |
 
@@ -143,6 +162,7 @@ bool italic = (style & FontStyles.Italic) != 0;
 5. 根据项目需要设置 Overflow、Maskable 和 Raycast Target。
 6. 先在一个测试 Canvas 或单个 prefab 上转换。
 7. 确认视觉没问题后，再对更大的 UI 节点批量转换。
+8. 使用 1.1 版本时，可以在确认设置无误后点击 `转换当前场景所有 TMP` 做场景级迁移。
 
 纯显示文本一般可以关闭 `Raycast Target`，避免转换后的文字挡住按钮、拖拽或点击事件。如果项目中有依赖文本接收射线的特殊交互，再针对那些对象单独处理。
 
@@ -150,7 +170,18 @@ bool italic = (style & FontStyles.Italic) != 0;
 
 源码和完整使用说明放在下面。源码文件直接放入 Unity 项目的 `Assets/Editor/` 目录即可使用。
 
-<a href="./TMPToTextMigrationTool.cs" download>下载 TMPToTextMigrationTool.cs</a>
+### v1.1
 
-<a href="./TMP转Text迁移工具使用说明.md" download>下载 TMP 转 Text 迁移工具使用说明</a>
+推荐使用 1.1 版本。它在 1.0 的基础上增加了设置窗口批量转换入口，并支持将当前场景中的所有 TMP 一次性转换为 Text。
 
+<a href="./TMPToTextMigrationTool-v1.1.cs" download>下载 TMPToTextMigrationTool-v1.1.cs</a>
+
+<a href="./TMP转Text迁移工具使用说明-v1.1.md" download>下载 TMP 转 Text 迁移工具使用说明 v1.1</a>
+
+### v1.0
+
+1.0 版本保留在这里，方便对照或回退。
+
+<a href="./TMPToTextMigrationTool.cs" download>下载 TMPToTextMigrationTool.cs（v1.0）</a>
+
+<a href="./TMP转Text迁移工具使用说明.md" download>下载 TMP 转 Text 迁移工具使用说明（v1.0）</a>

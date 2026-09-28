@@ -1,0 +1,3 @@
+b40cc37de3f49dda942d5ad0fb8de488196267123843819c2e8fc5004391c92b  LocalizationTextQuery-v0.1.zip
+d571d548132c224b8729eb561cf89c40040abeedb97050277032bbef36628456  LocalizationTextQuery-v0.1.unitypackage
+f160b538b8280a040a7f3310353ffd16749a55df7002aa9f4a140657162bc7bb  LocalizationTextQuery-v0.1-Guide.zh-CN.md

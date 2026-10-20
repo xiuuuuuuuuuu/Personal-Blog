@@ -14,6 +14,18 @@ toc: false
 
 <a href="../downloads/other/BankSimulation_Navigation_Movement_Guide.zh-CN.md" download="BankSimulation_Navigation_Movement_Guide.zh-CN.md">BankSimulation_Navigation_Movement_Guide.zh-CN.md · 下载</a>
 
+## UnityCLI · 安装包与教程
+
+完整保留原始文件，包含 CliPro 安装包、轻量板压缩包和安装教程。
+
+<a href="../downloads/other/unity-cli-pro-0.8.0/CliPro-0.8.0-windows-x64.zip" download="CliPro-0.8.0-windows-x64.zip">CliPro 0.8.0 完整 ZIP · 下载（约 17.1 MiB）</a>
+
+<a href="../downloads/other/unity-cli-pro-0.8.0/UnityCli%E8%BD%BB%E9%87%8F%E6%9D%BF.7z" download="UnityCli轻量板.7z">UnityCli轻量板.7z · 下载（约 11.9 MiB）</a>
+
+<a href="../downloads/other/unity-cli-pro-0.8.0/README%28%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%29.txt" download="README(安装教程).txt">README(安装教程).txt · 下载</a>
+
+<a href="../downloads/other/unity-cli-pro-0.8.0/SHA256SUMS.txt" download="SHA256SUMS.txt">SHA-256 校验文件 · 下载</a>
+
 ## Unity CLI · Unity 2022 Windows 迁移包
 
 [在线阅读安装说明]({{< relref "/tools/unity-cli-2022" >}})

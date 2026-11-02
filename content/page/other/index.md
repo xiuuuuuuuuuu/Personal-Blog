@@ -14,6 +14,8 @@ toc: false
 
 <a href="../downloads/other/BankSimulation_Navigation_Movement_Guide.zh-CN.md" download="BankSimulation_Navigation_Movement_Guide.zh-CN.md">BankSimulation_Navigation_Movement_Guide.zh-CN.md · 下载</a>
 
+<a href="../downloads/other/%E8%BD%AC%E6%AD%A3%E8%87%AA%E6%88%91%E8%AF%84%E4%BB%B72.txt" download="转正自我评价2.txt">转正自我评价2.txt · 下载</a>
+
 ## UnityCLI · 安装包与教程
 
 完整保留原始文件，包含 CliPro 安装包、轻量板压缩包和安装教程。
